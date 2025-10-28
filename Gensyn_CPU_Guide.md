@@ -1,5 +1,7 @@
 ##  > RL-SWARM NODE DETAILED GUIDE FOR MAC AND CPU 
-### This guide is to help users set up their RL-SWARM node using cpu especially those renting vps
+<img width="1697" height="549" alt="Screenshot 2025-10-28 143217" src="https://github.com/user-attachments/assets/8dcdd1cf-cd9c-441f-8c57-479875db6835" />
+
+### This guide is to help users set up their RL-SWARM node using cpu(ununtu) and macOS
 
 
 ## Requirements;
@@ -89,17 +91,50 @@ docker --version
 git clone https://github.com/gensyn-ai/rl-swarm/
 ```
 ### 8 Run the swarm 
-##### create a screen 
+##### > create a screen 
 ```
 screen -S swarm
 ```
-##### 9 Clone into the `swarm` directory 
+### 9 Clone into the `swarm` directory 
 ```
 cd rl-swarm
 ```
-##### 10 Install swarm 
+### 10 Install swarm 
 ```
 docker compose run --rm --build -Pit swarm-cpu
 ```
-##### 11 Login 
-##### Duplicate to open a new tab/terminal
+### 11 Install cloudfared and login 
+## Duplicate tab(open a new terminal) and run cloudfared so you can gen login website 
+##### for ubuntu/linux vps on the dupicated tab
+```
+sudo apt update && sudo apt install -y wget
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo dpkg -i cloudflared-linux-amd64.deb
+```
+##### for macOS on the duplicated tab
+```
+brew install cloudflared
+```
+##### verify cloudfared 
+```
+cloudflared --version
+```
+### Login 
+##### After installing and verifying on the duplicated tab run
+```
+cloudflared tunnel --url http://localhost:3000
+```
+#### Go to the web in the box just like shown in the image below and copy the link and load in your browser 
+<img width="1122" height="189" alt="Screenshot 2025-10-28 140639" src="https://github.com/user-attachments/assets/1d62c1b0-1bd2-488d-88d9-679530db7641" />
+input your email and login then go back to the previous tab on your terminal then wait for it to load and ask some questions which have the following answers
+
+ > `Would you like to push models you train in the RL swarm to the Hugging Face Hub? [y/N]` = press `N` and enter
+
+> `Enter the name of the model you want to use in huggingface repo/name format, or press [Enter] to use the default model` 
+
+ Join Judge 
+ 
+ to participate on Ai predictions and place bets you wil be asked 
+ > `Would you like to participate in the AI Prediction Market? (Y/n)` = Press `Y` and enter 
+ you'll see welcome to Gensyn testnet. Good luck 
+ You can now close screen with `Ctrl+A+D` and you're done!
