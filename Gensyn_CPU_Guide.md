@@ -1,7 +1,7 @@
 ##  > RL-SWARM NODE DETAILED GUIDE FOR MAC AND CPU 
 <img width="1697" height="549" alt="Screenshot 2025-10-28 143217" src="https://github.com/user-attachments/assets/8dcdd1cf-cd9c-441f-8c57-479875db6835" />
 
-### This guide is to help users set up their RL-SWARM node using cpu(ununtu) and macOS
+### This guide is to help users set up their RL-SWARM node using cpu(ubuntu) and macOS
 
 
 ## Requirements;
@@ -51,7 +51,7 @@ corepack prepare yarn@stable --activate
 yarn --version
 ```
 ### 6 Install Docker
-#### for ubuntu
+##### for ubuntu
 ```console
 # install required dependencies
 sudo apt install ca-certificates curl gnupg lsb-release -y
