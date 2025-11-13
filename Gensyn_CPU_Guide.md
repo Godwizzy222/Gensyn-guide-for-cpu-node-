@@ -1,18 +1,18 @@
-##  > RL-SWARM NODE DETAILED GUIDE FOR MAC AND CPU 
-<img width="1697" height="549" alt="Screenshot 2025-10-28 143217" src="https://github.com/user-attachments/assets/8dcdd1cf-cd9c-441f-8c57-479875db6835" />
+##  > RL-SWARM (CODE-ZERO) NODE DETAILED GUIDE FOR MAC AND CPU 
+<img width="872" height="795" alt="image" src="https://github.com/user-attachments/assets/b3471015-323b-45b2-b172-26206bb76769" />
 
-### This guide is to help users set up their RL-SWARM node using cpu(ubuntu) and macOS
-
+### CodeZero is a new environment built on RL-Swarm that extends our distributed learning framework into cooperative coding agents.
+### This guide is to help users set up their RL-SWARM(CodeZero) node using cpu(ubuntu) and macOS
 
 ## Requirements;
-##### arm64 or x86 cpu with min 16gb ram 
+##### arm64 or x86 cpu with min 32gb ram 
 ##### 8cores cpu
 ##### min 600gbssd storage 
 ##### huggingface token, get it from https://huggingface.co/ create an account and create access token with write and save it 
 ##### if you're running on vps then rent from contabo or https://my.hostbrr.com/order/forms/
 
 ##### PS: some softwares dosen't requires `sudo` cmd so always confirm
-
+### If you're an existing user, then start from STEP 7 
 
 ### 1 Update system packages 
 ```bash
@@ -86,24 +86,49 @@ docker --version
 ```
 docker --version
 ```
-### 7 Clone the Gensyn Repository
+#### 7 Install docker-compose
 ```
-git clone https://github.com/gensyn-ai/rl-swarm/
+apt install docker-compose
 ```
-### 8 Run the swarm 
-##### > create a screen 
+#### Existing users should remove docker container running on background 
+##### check for container ID 
+```
+docker ps -a
+```
+##### Copy out the container ID and stop it. (REPLACE "container-id" with the id you copied)
+```
+docker stop container-id
+```
+### 8 Clone the Gensyn Repository
+#### existing users should first remove old repo
+```
+rm -rf rl-swarm
+```
+#### Both new and existing users should clone the new repo
+```
+git clone https://github.com/gensyn-ai/rl-swarm
+```
+### 9 Run the swarm 
+##### > create a screen
 ```
 screen -S swarm
 ```
-### 9 Clone into the `swarm` directory 
+### 10 Clone into the `swarm` directory 
 ```
 cd rl-swarm
 ```
-### 10 Install swarm 
+#### Existing users should delete their old virtual environment and create a new one after pulling the latest changes:
 ```
-docker compose run --rm --build -Pit swarm-cpu
+git pull
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
 ```
-### 11 Install cloudfared and login 
+### 11 Start the swarm to automatically participate on CodeZero 
+```
+docker compose run --rm -P -it swarm-cpu
+```
+### 12 Install cloudfared and login 
 ## Duplicate tab(open a new terminal) and run cloudfared so you can gen login website 
 ##### for ubuntu/linux vps on the dupicated tab
 ```
